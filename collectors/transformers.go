@@ -30,6 +30,7 @@ import (
 // before adding them to the cache.
 var PodTransformer = func(logger logr.Logger) toolscache.TransformFunc {
 	return func(i interface{}) (interface{}, error) {
+		logger.Info("pod info", "object", fmt.Sprintf("%#v", i))
 		pod, ok := i.(*corev1.Pod)
 		if !ok {
 			err := fmt.Errorf("unable to convert object to %T", corev1.Pod{})
