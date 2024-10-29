@@ -33,7 +33,7 @@ var PodTransformer = func(logger logr.Logger) toolscache.TransformFunc {
 		pod, ok := i.(*corev1.Pod)
 		if !ok {
 			err := fmt.Errorf("unable to convert object to %T", corev1.Pod{})
-			logger.Error(err, "transformer", "kind", resource.Pod)
+			logger.Error(err, "transformer", "kind", resource.Pod, "object", fmt.Sprintf("%#v", i))
 			return nil, err
 		}
 
